@@ -1,35 +1,30 @@
 import React from "react";
-import {SafeAreaView,} from 'react-native';
-import { legacy_createStore } from "redux";
-import { Provider } from "react-redux";
-import Second from "./Second";
-import First from "./First";
+import {NavigationContainer} from '@react-navigation/native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Products from './pages/Products/Products'
+import Detail from './pages/Detail/Detail'
+const Stack=createNativeStackNavigator();
 
-const initialize={
-   counter:0,
-}
-function reducers(state,action){
-   switch (action.type) {
-      case 'UPDATE_COUNTER':
-         return{...state,counter:state.counter+2}
-      case 'NEGATİVE':
-         return {...state,counter:state.counter-3*2}
-      default:
-         return state;
-   }
-}
 
 function Router() {
      return(
-   <Provider store={legacy_createStore(reducers,initialize)}>
-      <SafeAreaView style={{flex:1,}}>
-          <First />
-          <Second />
-      </SafeAreaView>
-   </Provider>
+        <NavigationContainer>
+             <Stack.Navigator>
+                <Stack.Screen name="prodact" component={Products} options={{headerTitle:'Anasayfa',
+                headerTitleAlign:"center",
+                headerStyle:{backgroundColor:'#64b5f6'},
+                headerTitleStyle:{color:'white'} 
+               
+               }}/>
+                <Stack.Screen name="detail" component={Detail} options={{headerTitle:'Ürün Detayı',
+                headerTitleAlign:"center",
+                headerStyle:{backgroundColor:'#64b5f6'},
+                headerTitleStyle:{color:'white'},
+                headerTintColor :'white'         
+                }} />
+             </Stack.Navigator>
+        </NavigationContainer>
     )
 }
 export default Router;
-   
-
-
+    
