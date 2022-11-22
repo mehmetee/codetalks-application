@@ -1,8 +1,14 @@
-export default function reducers(state,action){
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+export default function reducers(state,action,){
 switch (action.type) {
     case "SET_USER":
-        return {...state ,user:action.pyload.user}
-        break;
+        const {user}=action.pyload
+        AsyncStorage.setItem('@USER',JSON.stringify(user))
+        return {...state ,user}
+        case "LOGOUT_USER":
+            AsyncStorage.removeItem("@USER")
+            return{...state,user:null}
 
     default:
         return{...state};

@@ -6,10 +6,10 @@ import Button from "../../components/ButtonContiner";
 import { Formik } from "formik";
 import usePost from '../../Hooks/usePost';
 import Config from "react-native-config";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-const Login=({navigation})=>{
+import { useDispatch } from "react-redux";
+const Login=()=>{
     const {data,loading,error,post}=usePost()
-
+    const dispatch=useDispatch()
     function handleLogin(value){
         post(Config.API_AUTH_URL +'login',value)
     }
@@ -17,8 +17,8 @@ const Login=({navigation})=>{
    if(data){
         if(data.status==='Error'){Alert.alert('Dükkan' , 'Kullanıcı bulunamadı...')}
         else{
-            AsyncStorage.setItem('@USER',JSON.stringify(user=Config.API_USER_URL))
-            navigation.navigate('prodact')}
+            dispatch({type:'SET_USER',pyload:{user}})
+            }
    }
      if (error){
     Alert.alert('Dükkan', 'Bir hata oluştu...' )  }
@@ -52,3 +52,24 @@ const Login=({navigation})=>{
 }
 
 export default Login;
+
+
+const user =[ {
+    id:1,
+    email:'John@gmail.com',
+    username:'johnd',
+    password:'m38rmF$',
+    name:{
+        firstname:'John',
+        lastname:'Doe'
+    },
+    address:{
+        city:'kilcoole',
+        street:'7835 new road',
+        number:3,
+        zipcode:'12926-3874',
+        geolocation:{
+            lat:'-37.3159',
+            long:'81.1496'
+        }
+    },}]

@@ -7,7 +7,7 @@ import Error from "../../components/Error/Error";
 const URL ="https://fakestoreapi.com/products"
 function Detail({route}){
     const {id}=route.params;
-    console.log(id)
+
 const {loading,error,data}=useFetch(`${URL}/${id}`);
 
 if(loading){
