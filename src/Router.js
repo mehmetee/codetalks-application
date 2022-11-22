@@ -1,21 +1,24 @@
 import React from "react";
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Products from './pages/Products/Products'
-import Detail from './pages/Detail/Detail'
+import Products from './pages/Products/Products';
+import Detail from './pages/Detail/Detail';
+import Login from "./pages/Login/Login";
 const Stack=createNativeStackNavigator();
 
 
 function Router() {
      return(
         <NavigationContainer>
-             <Stack.Navigator>
+           <Stack.Navigator>
+                <Stack.Screen name="Login" component={Login} options={{ headerShown:false }}/>
+          
                 <Stack.Screen name="prodact" component={Products} options={{headerTitle:'Anasayfa',
                 headerTitleAlign:"center",
                 headerStyle:{backgroundColor:'#64b5f6'},
                 headerTitleStyle:{color:'white'} 
-               
                }}/>
+
                 <Stack.Screen name="detail" component={Detail} options={{headerTitle:'Ürün Detayı',
                 headerTitleAlign:"center",
                 headerStyle:{backgroundColor:'#64b5f6'},
