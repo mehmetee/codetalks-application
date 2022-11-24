@@ -1,0 +1,1 @@
+export {default} from './Favori_job';
