@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View,Text, FlatList, StatusBar,SafeAreaView,TouchableOpacity} from "react-native";
+import { View,Text, FlatList, StatusBar,SafeAreaView,ScrollView} from "react-native";
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import  Icon  from "react-native-vector-icons/MaterialCommunityIcons";
@@ -66,8 +66,11 @@ function Message({route,navigation}){
                 <Text style={styles.headerTitle}>{item.cellTitle}</Text>
             </View>
             <View style={styles.container}>
-                    <Text style={styles.cellName}>{item.cellTitle} odası kuruldu !!!</Text>
-                <FlatList data={contentList} renderItem={renderMessage}/>
+                   
+                <FlatList 
+                 ListHeaderComponent={()=>( <Text style={styles.cellName}>{item.cellTitle} odası kuruldu !!!</Text>)}
+                data={contentList} renderItem={renderMessage} />
+
                 <FloatButton icon={'plus'} onPress={handleModalInputToggle}/>
                 <ModalInput 
                 visible={contentisVisible}
